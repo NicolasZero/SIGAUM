@@ -1,0 +1,4 @@
+# pnpm-workspace.yaml (en la raíz)
+packages:
+  - 'apps/*' # Esto debe cubrir apps/web
+  - 'packages/*' # Si tienes librerías internas

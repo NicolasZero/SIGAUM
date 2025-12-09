@@ -1,6 +1,6 @@
 {
-  "name": "Sistema de gestión de actividades",
-  "version": "0.1.0",
+  "name": "web",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 80 --turbo",
