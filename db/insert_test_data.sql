@@ -1,8 +1,8 @@
 -- workers 
 --id, identity_card, is_foreign, full_name, gender_id, department_id, position_id, payroll_type_id, area_coordination_id, status, created, updated
-INSERT INTO regions.workers OVERRIDING SYSTEM VALUE VALUES 
-(1, '28076011', 0, 'Super Admin', 0, 0, 0, 0, 0, 'ACTIVO', CURRENT_DATE, NULL),
-(2, '12345678', 0, 'Regular User', 0, 0, 0, 0, 0, 'ACTIVO', CURRENT_DATE, NULL);
+INSERT INTO general.workers OVERRIDING SYSTEM VALUE VALUES 
+(1, '28076011', FALSE, 'Super Admin', 0, 0, 0, 0, 0, 1, CURRENT_DATE, NULL),
+(2, '12345678', FALSE, 'Regular User', 0, 0, 0, 0, 0, 1, CURRENT_DATE, NULL);
 
 -- Users
 INSERT INTO regions.users OVERRIDING SYSTEM VALUE VALUES 
