@@ -17,7 +17,7 @@ LEFT JOIN general.payroll_type AS t ON t.id = w.payroll_type_id
 lEFT JOIN general.area_coordination AS a ON a.id = w.area_coordination_id;
 
 -- Schema Regions -- Users View
-CREATE VIEW regions.view_users AS SELECT u.*, r.role, w.identity_card, w.full_name, w.status, w.gender, w.position, w.position_id, w.gender_id, w.department, w.department_id FROM regions.users AS u
+CREATE VIEW regions.view_users AS SELECT u.*, r.role, w.identity_card, w.full_name, w.status_id, w.gender, w.position, w.position_id, w.gender_id, w.department, w.department_id FROM regions.users AS u
 LEFT JOIN regions.roles AS r ON r.id = u.role_id
 LEFT JOIN general.view_workers AS w ON w.id = u.worker_id;
 
