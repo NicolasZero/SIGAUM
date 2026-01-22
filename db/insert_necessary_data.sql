@@ -355,3 +355,12 @@ INSERT INTO general.worker_status OVERRIDING SYSTEM VALUE VALUES
 (3, 'SUSPENDIDO');
 
 SELECT pg_catalog.setval('general.worker_status_id_seq', 4, true);
+
+-- Workers
+INSERT INTO general.workers OVERRIDING SYSTEM VALUE VALUES 
+(1, '0000000', FALSE, 'Super Admin', 0, 0, 0, 0, 0, 1, CURRENT_DATE, NULL);
+
+-- Users
+INSERT INTO regions.users OVERRIDING SYSTEM VALUE VALUES 
+(1, 1, 'admin', '$2a$10$z/N3ZdEEs6K7az5lQvVGMeDMCGcDadI4q5NGVJgzQv91RJF0I2o96', 1),
+-- password admin

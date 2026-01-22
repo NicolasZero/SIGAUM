@@ -7,8 +7,11 @@
   "scripts": {
     "dev": "pnpm --filter ** dev",
     "dev:api": "pnpm --filter {apps/api} dev",
-    "dev:web": "pnpm --filter {apps/web} dev"
-
+    "dev:web": "pnpm --filter {apps/web} dev",
+    "start": "pnpm --filter ** start",
+    "start:api": "pnpm --filter {apps/api} start",
+    "start:web": "pnpm --filter {apps/web} start",
+    "build": "pnpm --filter {apps/web} build"
   },
   "keywords": [],
   "author": "",

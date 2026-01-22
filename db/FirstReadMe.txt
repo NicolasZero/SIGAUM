@@ -7,4 +7,3 @@ Run the files in this order:
 Optionally, you can modify the next file
 
 4.- inser_test_data
- 
