@@ -31,7 +31,7 @@ const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
     };
 
     checkAuth();
-  }, [router, setUserState]);
+  }, [router, setUserState, requiredRole]);
 
 
   if (!userState) {

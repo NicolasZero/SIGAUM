@@ -5,7 +5,6 @@ import { useMutation } from '@tanstack/react-query'
 import Cookies from 'js-cookie';
 import api from '@/api/api_regiones';
 
-
 type AuthContextType = {
   userState: any;
   setUserState: any;
@@ -13,6 +12,7 @@ type AuthContextType = {
   logout: () => void;
   wrongCredentials: boolean;
   userNotActive: boolean;
+  networkError: boolean;
   // userRole: number | null;
 };
 
@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [userState, setUserState] = useState(null);
   const [userNotActive, setUserNotActive] = useState(false);
   const [wrongCredentials, setWrongCredentials] = useState(false);
+  const [networkError, setNetworkError] = useState(false);
   // const [userRole, setUserRole] = useState(null);
   const router = useRouter();
 
@@ -30,9 +31,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const response = await api.post('/auth', { user, pass });
       return response.data;
     },
+    onMutate: () => {
+      setNetworkError(false);
+    }
   });
 
   const login = (user: string, pass: string) => {
+    // if (typeof navigator !== 'undefined' && !navigator.onLine) {
+    //   console.warn('Sin conexión: no se realizará la llamada a la API');
+    //   setNetworkError(true);
+    //   return;
+    // }
+
     mutation.mutate({ user, pass }, {
       onSuccess: (data) => {
         if (data.data) {
@@ -44,7 +54,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           if (data.data.role_id === 1) {
             router.push('/dashboard/achievements');
           } else if (data.data.role_id === 2) {
-            // setUserRole(data.data.role_id);
             router.push('/dashboard/register-achievements');
           }
           Cookies.set('user', JSON.stringify(data.data), { expires: 7 }); // Almacena el token en una cookie
@@ -53,9 +62,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUserNotActive(false);
         console.log('Credenciales correctas');
       },
-      onError: () => {
-        console.error('Credenciales incorrectas');
-        setWrongCredentials(true);
+      onError: (err: any) => {
+        console.error('Error en login', err);
+        if (err?.response) {
+          setWrongCredentials(true);
+        } else {
+          setNetworkError(true);
+        }
       }
     });
   };
@@ -74,7 +87,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ userState, login, logout, wrongCredentials, setUserState, userNotActive}}>
+    <AuthContext.Provider value={{ userState, login, logout, wrongCredentials, setUserState, userNotActive, networkError}}>
       {children}
     </AuthContext.Provider>
   );

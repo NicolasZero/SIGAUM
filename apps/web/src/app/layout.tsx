@@ -1,7 +1,7 @@
 
 "use client"
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Cintillo } from "@/components/cintillo";
@@ -9,14 +9,14 @@ import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster"
 import { AuthProvider } from "@/context/auth-context";
 import { UpdateActivitieProvider } from "@/context/updateActivitie";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
 
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 const metadata: Metadata = {
   title: "Sistema de gestión de actividades inamujer",
@@ -24,17 +24,26 @@ const metadata: Metadata = {
 };
 const queryClient = new QueryClient()
 
+queryClient.setDefaultOptions({
+  queries:{
+    networkMode: 'always'
+  },
+  mutations: {
+    networkMode: 'always'
+  }
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
+  // const pathname = usePathname();
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <UpdateActivitieProvider>
-          <html lang="en">
+          <html lang="en" suppressHydrationWarning={true}>
             <link
               rel="icon"
               href="/ina.png"
@@ -42,7 +51,7 @@ export default function RootLayout({
               sizes="any"
             />
 
-            <body className={`${inter.className} dark:bg-dark`}>
+            <body className='dark:bg-dark'>
 
               <ThemeProvider
                 attribute="class"
