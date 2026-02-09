@@ -1,5 +1,4 @@
 "use client"
-// import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -8,20 +7,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-
 import LoginForm from "@/components/login-form"
-// import { useRouter } from "next/navigation"
 
 export function LoginContainer() {
-
-  // const router = useRouter()
-
-  // const handleGoToRecoverPassword = () => {
-  //   router.push("login/recover-password")
-  // }
-
   return (
-    <Card className="w-[320px]">
+    <Card className="sm:w-[320px]">
       <CardHeader>
         <CardTitle className="text-center">Iniciar Sesión</CardTitle>
         <CardDescription className="text-center">Ingrese usuario y contraseña</CardDescription>

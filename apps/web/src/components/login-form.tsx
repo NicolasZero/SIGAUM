@@ -27,10 +27,6 @@ export default function LoginForm() {
     const [isLoading,setLoading] = useState(false)
     const auth = useAuth()
 
-    if (!auth) return <div>Error: Auth context Esta fallando</div>
-
-    const { login, wrongCredentials, userNotActive } = auth
-
     const form = useForm<FormLoginData>({
         resolver: zodResolver(formLoginSchema),
         defaultValues: {
@@ -38,6 +34,11 @@ export default function LoginForm() {
             password: "",
         }
     })
+    
+    if (!auth) return <div>Error: Auth context Esta fallando</div>
+
+    const { login, wrongCredentials, userNotActive } = auth
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword)
