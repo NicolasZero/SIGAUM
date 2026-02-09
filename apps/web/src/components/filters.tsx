@@ -4,13 +4,13 @@ import { DatePickerWithRange } from "./date-picker"
 import { Button } from "./ui/button"
 import { useEffect, useState } from "react";
 import { Agenda, MobileUnit } from "@/lib/types";
-import handleExportPDF from "@/lib/exportPDF";
+// import handleExportPDF from "@/lib/exportPDF";
 import { handleExportExcelMobile } from "@/lib/exportExcelMobile";
 import { Input } from "./ui/input";
 import { Search } from "lucide-react";
 import { handleExportExcel } from "@/lib/exportExcelAchievements";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
-import useLocation from "@/hooks/useLocation";
+// import useLocation from "@/hooks/useLocation";
 
 interface FiltersProps {
     initialData: Agenda[] | MobileUnit[];
@@ -119,7 +119,7 @@ export default function Filters({ initialData, setActividad, setActividadMobile,
         if (setActividadMobile) {
             setActividadMobile(filteredData.filter((item): item is MobileUnit => 'username' in item) as MobileUnit[]);
         }
-    }, [date?.from, date?.to, search, initialData, selectedActivity, selectedState, selectedStatus]);
+    }, [date?.from, date?.to, search, initialData, selectedActivity, selectedState, selectedStatus, setActividad, setActividadMobile]);
 
 
 

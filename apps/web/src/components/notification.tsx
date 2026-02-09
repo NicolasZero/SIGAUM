@@ -21,7 +21,7 @@ interface NotificationProps {
       };
   
       notification(message);
-    }, [message]);
+    }, [message, toast, variant]);
   
     return null;
   };
